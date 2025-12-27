@@ -11,7 +11,7 @@ export type UseSearchResult<T> = {
 
 export function useSearch<T = any>(initialCards: T[] = []): UseSearchResult<T> {
   const [query, setQueryState] = useState('');
-  const [filtered, setFiltered] = useState<T[]>(initialCards as T[]);
+  const [filtered, setFiltered] = useState(initialCards as T[]);
 
   useEffect(() => {
     setFiltered(initialCards as T[]);

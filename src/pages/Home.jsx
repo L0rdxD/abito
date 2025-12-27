@@ -1,10 +1,12 @@
 import Header from "../components/Header/Header";
 import Card from "../components/Card/Card";
 import useSearch from "../hooks/useSearch";
+import useClearControl from "../hooks/useClearControl";
 import cardArray from "../constants";
 
 export const Home = () => {
-    const { query, setQuery, filtered, handleSearch } = useSearch(cardArray);
+    const { query, setQuery, filtered, handleSearch, reset } = useSearch(cardArray);
+    const { showClear, onClear } = useClearControl(query, reset, setQuery);
 
     return (
         <>
@@ -20,6 +22,16 @@ export const Home = () => {
                                 onChange={(e) => setQuery(e.target.value)}
                                 onKeyDown={(e) => { if (e.key === 'Enter') handleSearch(); }}
                             />
+                            {showClear && (
+                                <button
+                                    type="button"
+                                    className="search-clear"
+                                    onClick={onClear}
+                                    aria-label="Очистить"
+                                >
+                                    ×
+                                </button>
+                            )}
                             <button type="button" className="btn btn-primary search-btn" onClick={handleSearch}>
                                 <img className="search-btn_icon" src="/img/search.svg" alt="search" />
                                 <span className="search-btn_text">Найти</span>

@@ -41,6 +41,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    position: relative;
 }
 .search-btn{
     display: flex;
@@ -54,6 +55,16 @@ body{
     border: none;
     min-width: 0;
 }
+.search-clear{
+    position: absolute;
+    right: 120px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    font-size: 18px;
+    cursor: pointer;
+    }
 .search-btn .search-btn_icon{
    width: 15px;
    height: 15px;
