@@ -2,7 +2,7 @@ import './card.css';
 
 export const Card = ({ title, price, address, date, img }) => {
     return (
-        <a href="../abito/product.html" className="card">
+        <a href="./" className="card">
                  <div className="card--img">
                     <img src={img} alt="card-img" />
                  </div>
