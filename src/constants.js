@@ -3,7 +3,7 @@ export const cardArray = [
         id: 0,
         title: 'Электро самокат Xiaomi Mi Electric Scooter 3 Lite',
         price: '10 980 P',
-        address: ' Казань, р-н Вахитовский',
+        address: ' Москва, р-н Садовое Кольцо',
         date: ' 10 июля 11:39',
         img: './img/card-img-2.png' 
     },

@@ -1,8 +1,11 @@
 import Header from "../components/Header/Header";
 import Card from "../components/Card/Card";
+import useSearch from "../hooks/useSearch";
 import cardArray from "../constants";
 
 export const Home = () => {
+    const { query, setQuery, filtered, handleSearch } = useSearch(cardArray);
+
     return (
         <>
             <Header />
@@ -10,8 +13,14 @@ export const Home = () => {
                 <section className="search">
                     <div className="container">
                         <div className="search-box">
-                            <input type="text" placeholder="Поиск по объявлениям" />
-                            <button className="btn btn-primary search-btn">
+                            <input
+                                type="text"
+                                placeholder="Поиск по объявлениям"
+                                value={query}
+                                onChange={(e) => setQuery(e.target.value)}
+                                onKeyDown={(e) => { if (e.key === 'Enter') handleSearch(); }}
+                            />
+                            <button type="button" className="btn btn-primary search-btn" onClick={handleSearch}>
                                 <img className="search-btn_icon" src="/img/search.svg" alt="search" />
                                 <span className="search-btn_text">Найти</span>
                             </button>
@@ -25,9 +34,9 @@ export const Home = () => {
                             <div className="content-main">
                                 <h2 className="content-main_title">Рекомендации для вас</h2>
                                 <div className="content-main_list">
-                                    { 
-                                        cardArray.map(card => (
-                                            <Card 
+                                    {
+                                        filtered.map(card => (
+                                            <Card
                                                 key={card.id}
                                                 title={card.title}
                                                 price={card.price}
@@ -36,7 +45,7 @@ export const Home = () => {
                                                 img={card.img}
                                             />
                                         ))
-                                        }
+                                    }
                                 </div>
                             </div>
                             <div className="content-side">
