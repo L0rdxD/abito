@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './header.css';
 
 export const Header = () => {
@@ -5,10 +6,10 @@ export const Header = () => {
         <header className="header">
             <div className="container">
                 <div className="header-box">
-                    <a href="./index.html" className="header-logo">
-                        <img src="/img/logo.svg" alt="logo" />
-                        <span>Abito</span>
-                    </a>
+                    <Link to= {"/"} className="header-logo"> 
+                    <img src="/img/logo.svg" className="header-logo" alt="logo" />
+                    <span>Abito</span>
+                    </Link>
                     <div className="header-controls">
                         <button className="btn btn-online">Вход и регистрация</button>
                         <button className="btn btn-primary">Подать объявление</button>

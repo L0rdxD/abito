@@ -1,46 +1,12 @@
-import Header from "../components/Header/Header";
 import Card from "../components/Card/Card";
-import useSearch from "../hooks/useSearch";
-import useClearControl from "../hooks/useClearControl";
-import cardArray from "../constants";
+import { useOutletContext } from "react-router-dom";
 
 export const Home = () => {
-    const { query, setQuery, filtered, handleSearch, reset } = useSearch(cardArray);
-    const { showClear, onClear } = useClearControl(query, reset, setQuery);
+    const { filtered } = useOutletContext();
 
     return (
-        <>
-            <Header />
-            <main>
-                <section className="search">
-                    <div className="container">
-                        <div className="search-box">
-                            <input
-                                type="text"
-                                placeholder="Поиск по объявлениям"
-                                value={query}
-                                onChange={(e) => setQuery(e.target.value)}
-                                onKeyDown={(e) => { if (e.key === 'Enter') handleSearch(); }}
-                            />
-                            {showClear && (
-                                <button
-                                    type="button"
-                                    className="search-clear"
-                                    onClick={onClear}
-                                    aria-label="Очистить"
-                                >
-                                    ×
-                                </button>
-                            )}
-                            <button type="button" className="btn btn-primary search-btn" onClick={handleSearch}>
-                                <img className="search-btn_icon" src="/img/search.svg" alt="search" />
-                                <span className="search-btn_text">Найти</span>
-                            </button>
-                        </div>
-                    </div>
-                </section>
 
-                <section className="content">
+        <section className="content">
                     <div className="container">
                         <div className="content-box">
                             <div className="content-main">
@@ -50,6 +16,7 @@ export const Home = () => {
                                         filtered.map(card => (
                                             <Card
                                                 key={card.id}
+                                                id={card.id}
                                                 title={card.title}
                                                 price={card.price}
                                                 address={card.address}
@@ -91,8 +58,7 @@ export const Home = () => {
                         </div>
                     </div>
                 </section>
-            </main>
-        </>
+
     )
 }
 export default Home;
